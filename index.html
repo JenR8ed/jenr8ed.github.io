@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Fully Interactive JenR8ed Terminal Portfolio</title>
+<title>JenR8ed Terminal Portfolio</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
@@ -27,54 +29,11 @@
           },
         }
     </script>
-<style type="text/tailwindcss">
-        @keyframes crt-flicker {
-            0% { opacity: 0.97; }
-            5% { opacity: 0.95; }
-            10% { opacity: 0.9; }
-            15% { opacity: 0.98; }
-            30% { opacity: 0.95; }
-            50% { opacity: 0.92; }
-            80% { opacity: 0.99; }
-            100% { opacity: 0.97; }
-        }
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
+<style>
         .crt-overlay {
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 255, 0, 0.03));
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
             background-size: 100% 3px, 3px 100%;
             pointer-events: none;
-            z-index: 100;
-        }
-        .crt-flicker-layer {
-            animation: crt-flicker 0.15s infinite;
-        }
-        .scanline-effect::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(to bottom, rgba(13, 242, 13, 0) 0%, rgba(13, 242, 13, 0.03) 50%, rgba(13, 242, 13, 0) 100%);
-            background-size: 100% 4px;
-            z-index: 101;
-            pointer-events: none;
-        }
-        .moving-scanline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(0deg, rgba(13, 242, 13, 0) 0%, rgba(13, 242, 13, 0.05) 50%, rgba(13, 242, 13, 0) 100%);
-            opacity: 0.1;
-            animation: scanline 8s linear infinite;
-            pointer-events: none;
-            z-index: 102;
         }
         .terminal-text-glow {
             text-shadow: 0 0 5px rgba(13, 242, 13, 0.7);
@@ -87,96 +46,35 @@
             vertical-align: middle;
             margin-left: 4px;
         }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        .animate-blink {
-            animation: blink 1s step-end infinite;
-        }
     </style>
 </head>
-<body class="bg-background-dark font-mono text-primary min-h-screen relative overflow-x-hidden crt-flicker-layer">
-<div class="fixed inset-0 crt-overlay"></div>
-<div class="fixed inset-0 scanline-effect"></div>
-<div class="moving-scanline"></div>
+<body class="bg-background-light dark:bg-background-dark font-mono text-slate-900 dark:text-primary min-h-screen relative overflow-x-hidden">
+<!-- CRT Scanline Effect Layer -->
+<div class="fixed inset-0 crt-overlay z-50"></div>
 <div class="relative flex h-auto min-h-screen w-full flex-col bg-terminal-black group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
+<!-- Header/Top Nav -->
 <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-6 py-4 md:px-10 lg:px-40">
 <div class="flex items-center gap-4 text-primary">
 <div class="size-6 terminal-text-glow">
-<span class="material-symbols-outlined text-3xl" aria-hidden="true">terminal</span>
+<span class="material-symbols-outlined text-3xl">terminal</span>
 </div>
 <h2 class="text-primary text-lg font-bold leading-tight tracking-tight font-display uppercase italic">JenR8ed_Terminal</h2>
 </div>
 <div class="flex flex-1 justify-end gap-8">
 <nav class="hidden md:flex items-center gap-9">
 <a class="text-primary/70 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#whoami">whoami</a>
-<a class="text-primary/70 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#skills">cat skills.sh</a>
-<a class="text-primary/70 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#game">./play_game.sh</a>
-<a class="text-primary/70 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#guestbook">guestbook.log</a>
+<a class="text-primary/70 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#stack">ls -l</a>
+<a class="text-primary/70 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#contact">cat contact.txt</a>
+<a class="text-primary/70 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#projects">cat projects.txt</a>
 </nav>
-<button type="button" class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded bg-primary text-background-dark text-xs font-black uppercase leading-normal tracking-widest px-4 h-9 hover:bg-white transition-all">
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded bg-primary text-background-dark text-xs font-black uppercase leading-normal tracking-widest px-4 h-9 hover:bg-white transition-all">
 <span>EXECUTE</span>
 </button>
 </div>
 </header>
 <main class="px-6 md:px-10 lg:px-40 py-10 flex flex-col gap-12 max-w-[1200px] mx-auto w-full">
-<section class="flex flex-col gap-1 text-xs md:text-sm text-primary/80 font-mono leading-tight border-b border-primary/10 pb-10">
-<div class="flex gap-4"><span>[  OK  ]</span><span>Loading Kernel 6.1.0-23-amd64...</span></div>
-<div class="flex gap-4"><span>[  OK  ]</span><span>Initializing JenR8ed_OS Core...</span></div>
-<div class="flex gap-4"><span>[  OK  ]</span><span>Mounting /dev/sda1 on /root...</span></div>
-<div class="flex gap-4"><span>[  OK  ]</span><span>Starting Network Configuration...</span></div>
-<div class="flex gap-4"><span>[  OK  ]</span><span>DHCP Request sent, IP assigned: 192.168.1.104</span></div>
-<div class="flex gap-4"><span>[  OK  ]</span><span>Initializing Python Interpreter 3.11...</span></div>
-<div class="flex gap-4"><span>[  OK  ]</span><span>Loading QA_ENGINE_MODULES...</span></div>
-<div class="flex gap-4"><span>[  OK  ]</span><span>Scanning for available hardware... Done.</span></div>
-<div class="mt-2 text-primary">System initialization complete. Accessing user: Jennifer McKinley...</div>
-</section>
-<section class="flex flex-col gap-4 bg-primary/5 border border-primary/20 p-6 rounded" id="help">
-<div class="flex items-center gap-2">
-<span class="text-primary/50">visitor@jenr8ed:~$</span>
-<h2 class="text-primary text-xl font-bold terminal-text-glow">help</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base">
-<div class="flex flex-col gap-1">
-<div class="flex gap-4">
-<span class="text-primary font-bold min-w-[150px]">whoami</span>
-<span class="text-primary/60">Display user identity and bio</span>
-</div>
-<div class="flex gap-4">
-<span class="text-primary font-bold min-w-[150px]">ls -al ./stack</span>
-<span class="text-primary/60">List core technology stack</span>
-</div>
-<div class="flex gap-4">
-<span class="text-primary font-bold min-w-[150px]">cat skills.sh</span>
-<span class="text-primary/60">Execute skills proficiency report</span>
-</div>
-<div class="flex gap-4 text-primary font-bold">
-<span class="min-w-[150px]">./play_game.sh</span>
-<span class="text-primary/60">Launch Terminal Adventure</span>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<div class="flex gap-4">
-<span class="text-primary font-bold min-w-[150px]">cat qa_tools.txt</span>
-<span class="text-primary/60">View automated testing toolkit</span>
-</div>
-<div class="flex gap-4">
-<span class="text-primary font-bold min-w-[150px]">cat projects.txt</span>
-<span class="text-primary/60">Read project history and logs</span>
-</div>
-<div class="flex gap-4">
-<span class="text-primary font-bold min-w-[150px]">cat contact.txt</span>
-<span class="text-primary/60">Establish communication link</span>
-</div>
-<div class="flex gap-4 text-primary font-bold">
-<span class="min-w-[150px]">cat guestbook.log</span>
-<span class="text-primary/60">Read and sign guestbook</span>
-</div>
-</div>
-</div>
-</section>
+<!-- Hero Section: whoami -->
 <section class="flex flex-col gap-6" id="whoami">
 <div class="flex items-center gap-2">
 <span class="text-primary/50">visitor@jenr8ed:~$</span>
@@ -187,185 +85,69 @@
 <span class="material-symbols-outlined text-9xl">person_search</span>
 </div>
 <div class="relative z-10 flex flex-col gap-4">
-<h2 class="text-primary text-3xl md:text-5xl font-black leading-tight font-display">Jennifer McKinley</h2>
+<h2 class="text-primary text-3xl md:text-5xl font-black leading-tight font-display">
+                                Jennifer McKinley
+                            </h2>
 <p class="text-primary/90 text-lg md:text-xl max-w-2xl leading-relaxed">
                                 QA Engineer &amp; Python Developer. Specializing in automated testing architectures and clean, high-efficiency system code. I translate complex requirements into stable, scalable software solutions.
                             </p>
 <div class="mt-4 flex gap-4">
-<button class="bg-primary text-background-dark px-6 py-3 rounded font-bold uppercase text-sm tracking-widest hover:brightness-110">INITIALIZE_CONTACT</button>
-<button class="border border-primary text-primary px-6 py-3 rounded font-bold uppercase text-sm tracking-widest hover:bg-primary/10">VIEW_RECORDS</button>
+<button class="bg-primary text-background-dark px-6 py-3 rounded font-bold uppercase text-sm tracking-widest hover:brightness-110">
+                                    INITIALIZE_CONTACT
+                                </button>
+<button class="border border-primary text-primary px-6 py-3 rounded font-bold uppercase text-sm tracking-widest hover:bg-primary/10">
+                                    VIEW_RECORDS
+                                </button>
 </div>
 </div>
 </div>
 </section>
-<section class="flex flex-col gap-6" id="game">
-<div class="flex items-center gap-2">
-<span class="text-primary/50">visitor@jenr8ed:~$</span>
-<h2 class="text-primary text-xl font-bold terminal-text-glow">./play_game.sh</h2>
-</div>
-<div class="border border-primary/20 bg-primary/5 p-8 rounded-lg font-mono flex flex-col items-center">
-<div class="w-full max-w-2xl border border-primary/30 p-4 bg-terminal-black">
-<pre class="text-[10px] md:text-xs leading-none text-center mb-6">  _____  _____  _    _  _   _  ______  _   _   _____   _   _  _____  ______
- / ____||  __ \| |  | || \ | ||  ____|| \ | | / ____| | \ | ||  _  ||  ____|
-| (___  | |__) || |  | ||  \| || |__   |  \| || |  __  |  \| || |_| || |__
- \___ \ |  ___/ | |  | || . ` ||  __|  | . ` || | |_ | | . ` ||  _  ||  __|
- ____) || |     | |__| || |\  || |____ | |\  || |__| | | |\  || | | || |____
-|_____/ |_|      \____/ |_| \_||______||_| \_| \_____| |_| \_||_| |_||______|
-                            </pre>
-<div class="border border-primary/20 aspect-video flex flex-col items-center justify-center gap-4 text-center p-6 relative overflow-hidden">
-<div class="absolute inset-0 opacity-10 flex items-center justify-center">
-<span class="material-symbols-outlined text-[200px]">videogame_asset</span>
-</div>
-<div class="z-10 flex flex-col gap-2">
-<p class="text-lg font-bold">You are in a dark server room.</p>
-<p class="text-primary/70 italic">The humming of cooling fans fills the air. A single terminal glows in the corner.</p>
-<div class="mt-4 flex flex-col gap-2">
-<p class="text-sm">Available Commands:</p>
-<div class="flex gap-2 justify-center">
-<span class="border border-primary/40 px-3 py-1 text-xs hover:bg-primary/20 cursor-pointer">[north]</span>
-<span class="border border-primary/40 px-3 py-1 text-xs hover:bg-primary/20 cursor-pointer">[south]</span>
-<span class="border border-primary/40 px-3 py-1 text-xs hover:bg-primary/20 cursor-pointer">[east]</span>
-<span class="border border-primary/40 px-3 py-1 text-xs hover:bg-primary/20 cursor-pointer">[west]</span>
-</div>
-</div>
-<div class="mt-6 flex items-center gap-2 border-b border-primary/30 pb-1">
-<span class="text-primary/50 text-xs">&gt;</span>
-<input class="bg-transparent border-none focus:ring-0 text-sm p-0 w-full placeholder:text-primary/20" placeholder="Type command..." type="text"/>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="flex flex-col gap-6" id="skills">
-<div class="flex items-center gap-2">
-<span class="text-primary/50">visitor@jenr8ed:~$</span>
-<h2 class="text-primary text-xl font-bold terminal-text-glow">cat skills.sh</h2>
-</div>
-<div class="border border-primary/20 bg-primary/5 p-8 rounded-lg font-mono">
-<div class="flex flex-col gap-6">
-<div class="flex flex-col gap-2">
-<div class="flex justify-between items-end">
-<span class="text-lg">Python / Backend</span>
-<span class="text-primary/60">95%</span>
-</div>
-<div class="text-xl leading-none tracking-tight">
-                                    [<span class="text-primary">##########</span><span class="text-primary/20"></span>]
-                                </div>
-</div>
-<div class="flex flex-col gap-2">
-<div class="flex justify-between items-end">
-<span class="text-lg">QA Automation (Selenium/PyTest)</span>
-<span class="text-primary/60">90%</span>
-</div>
-<div class="text-xl leading-none tracking-tight">
-                                    [<span class="text-primary">#########</span><span class="text-primary/20">#</span>]
-                                </div>
-</div>
-<div class="flex flex-col gap-2">
-<div class="flex justify-between items-end">
-<span class="text-lg">API Testing &amp; Integration</span>
-<span class="text-primary/60">85%</span>
-</div>
-<div class="text-xl leading-none tracking-tight">
-                                    [<span class="text-primary">########</span><span class="text-primary/20">##</span>]
-                                </div>
-</div>
-</div>
-</div>
-</section>
-<section class="flex flex-col gap-6" id="guestbook">
-<div class="flex items-center gap-2">
-<span class="text-primary/50">visitor@jenr8ed:~$</span>
-<h2 class="text-primary text-xl font-bold terminal-text-glow">cat guestbook.log</h2>
-</div>
-<div class="border border-primary/20 bg-primary/5 rounded-lg p-6 font-mono">
-<div class="flex flex-col gap-2 mb-8 h-48 overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-primary/20">
-<div class="text-sm border-l-2 border-primary/20 pl-4 py-1">
-<span class="text-primary/40">[2023-10-25 09:15]</span> <span class="text-primary font-bold">Guest:</span> "Loving the CRT effect, reminds me of my old 486!"
-                            </div>
-<div class="text-sm border-l-2 border-primary/20 pl-4 py-1">
-<span class="text-primary/40">[2023-10-26 14:22]</span> <span class="text-primary font-bold">Guest:</span> "Amazing portfolio! The skills bar chart is a nice touch."
-                            </div>
-<div class="text-sm border-l-2 border-primary/20 pl-4 py-1">
-<span class="text-primary/40">[2023-10-27 18:05]</span> <span class="text-primary font-bold">Guest:</span> "Python and QA tools coverage is impressive."
-                            </div>
-<div class="text-sm border-l-2 border-primary/20 pl-4 py-1 opacity-50">
-<span class="text-primary/40">[2023-10-28 11:30]</span> <span class="text-primary font-bold">Guest:</span> "Checking out the project logs now..."
-                            </div>
-</div>
-<div class="border-t border-primary/20 pt-6">
-<label class="text-xs text-primary/50 mb-2 block font-bold">echo "[Your Message]" &gt;&gt; guestbook.log</label>
-<div class="flex items-center gap-3 bg-terminal-black border border-primary/30 p-2 rounded">
-<span class="text-primary/40 text-sm">$ echo "</span>
-<input class="flex-1 bg-transparent border-none focus:ring-0 text-primary text-sm p-0 placeholder:text-primary/20" placeholder="Type your message here..." type="text"/>
-<span class="text-primary/40 text-sm">" &gt;&gt; log</span>
-<button class="bg-primary/20 hover:bg-primary hover:text-background-dark text-primary px-4 py-1 text-xs font-bold transition-all uppercase">Enter</button>
-</div>
-</div>
-</div>
-</section>
+<!-- Stack Section: ls -l ./stack -->
 <section class="flex flex-col gap-6" id="stack">
 <div class="flex items-center gap-2">
 <span class="text-primary/50">visitor@jenr8ed:~$</span>
 <h2 class="text-primary text-xl font-bold terminal-text-glow">ls -al ./stack</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Python Card -->
 <div class="flex flex-col gap-4 rounded border border-primary/30 bg-primary/5 p-6 hover:bg-primary/10 transition-all group">
 <div class="text-primary group-hover:terminal-text-glow">
 <span class="material-symbols-outlined text-4xl">code_blocks</span>
 </div>
 <div class="flex flex-col gap-2">
 <h3 class="text-primary text-xl font-bold font-display tracking-tight underline decoration-primary/30 underline-offset-4">Python</h3>
-<p class="text-primary/70 text-sm font-normal leading-relaxed italic">drwxr-xr-x Advanced Scripting, PyTest, Selenium, Django Backend logic.</p>
+<p class="text-primary/70 text-sm font-normal leading-relaxed italic">
+                                    drwxr-xr-x  Advanced Scripting, PyTest, Selenium, Django Backend logic.
+                                </p>
 </div>
 </div>
+<!-- Frontend Card -->
 <div class="flex flex-col gap-4 rounded border border-primary/30 bg-primary/5 p-6 hover:bg-primary/10 transition-all group">
 <div class="text-primary group-hover:terminal-text-glow">
 <span class="material-symbols-outlined text-4xl">data_object</span>
 </div>
 <div class="flex flex-col gap-2">
-<h3 class="text-primary text-xl font-bold font-display tracking-tight underline decoration-primary/30 underline-offset-4">Web Stack</h3>
-<p class="text-primary/70 text-sm font-normal leading-relaxed italic">-rw-r--r-- Responsive UI design, Tailwind CSS, Modern ES6+ Architecture.</p>
+<h3 class="text-primary text-xl font-bold font-display tracking-tight underline decoration-primary/30 underline-offset-4">HTML/CSS/JS</h3>
+<p class="text-primary/70 text-sm font-normal leading-relaxed italic">
+                                    -rw-r--r-- Responsive UI design, Tailwind CSS, Modern ES6+ Architecture.
+                                </p>
 </div>
 </div>
+<!-- Deployment Card -->
 <div class="flex flex-col gap-4 rounded border border-primary/30 bg-primary/5 p-6 hover:bg-primary/10 transition-all group">
 <div class="text-primary group-hover:terminal-text-glow">
 <span class="material-symbols-outlined text-4xl">cloud_done</span>
 </div>
 <div class="flex flex-col gap-2">
-<h3 class="text-primary text-xl font-bold font-display tracking-tight underline decoration-primary/30 underline-offset-4">DevOps</h3>
-<p class="text-primary/70 text-sm font-normal leading-relaxed italic">drw-rw-rw- GitHub Actions, Docker, AWS Deployment, Automated Pipelines.</p>
+<h3 class="text-primary text-xl font-bold font-display tracking-tight underline decoration-primary/30 underline-offset-4">DevOps/CI-CD</h3>
+<p class="text-primary/70 text-sm font-normal leading-relaxed italic">
+                                    drw-rw-rw- GitHub Actions, Docker, AWS Deployment, Automated Pipelines.
+                                </p>
 </div>
 </div>
 </div>
 </section>
-<section class="flex flex-col gap-6" id="qa-tools">
-<div class="flex items-center gap-2">
-<span class="text-primary/50">visitor@jenr8ed:~$</span>
-<h2 class="text-primary text-xl font-bold terminal-text-glow">cat qa_tools.txt</h2>
-</div>
-<div class="border border-primary/20 bg-primary/2 rounded-lg p-6">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-<div class="flex flex-col items-center gap-3 p-4 border border-dashed border-primary/30 rounded group hover:border-primary transition-colors">
-<span class="material-symbols-outlined text-3xl opacity-60 group-hover:opacity-100">bug_report</span>
-<span class="text-sm font-bold tracking-widest uppercase">Selenium</span>
-</div>
-<div class="flex flex-col items-center gap-3 p-4 border border-dashed border-primary/30 rounded group hover:border-primary transition-colors">
-<span class="material-symbols-outlined text-3xl opacity-60 group-hover:opacity-100">science</span>
-<span class="text-sm font-bold tracking-widest uppercase">PyTest</span>
-</div>
-<div class="flex flex-col items-center gap-3 p-4 border border-dashed border-primary/30 rounded group hover:border-primary transition-colors">
-<span class="material-symbols-outlined text-3xl opacity-60 group-hover:opacity-100">api</span>
-<span class="text-sm font-bold tracking-widest uppercase">Postman</span>
-</div>
-<div class="flex flex-col items-center gap-3 p-4 border border-dashed border-primary/30 rounded group hover:border-primary transition-colors">
-<span class="material-symbols-outlined text-3xl opacity-60 group-hover:opacity-100">task_alt</span>
-<span class="text-sm font-bold tracking-widest uppercase">JIRA</span>
-</div>
-</div>
-</div>
-</section>
+<!-- Projects Section: cat projects.txt -->
 <section class="flex flex-col gap-6" id="projects">
 <div class="flex items-center gap-2">
 <span class="text-primary/50">visitor@jenr8ed:~$</span>
@@ -391,10 +173,16 @@
 <td class="px-6 py-4 text-primary/80">Dev</td>
 <td class="px-6 py-4"><span class="bg-primary/20 text-primary text-[10px] px-2 py-1 rounded">LIVE</span></td>
 </tr>
+<tr class="hover:bg-primary/5">
+<td class="px-6 py-4 font-bold text-primary">Green_Terminal_UI</td>
+<td class="px-6 py-4 text-primary/80">UI/UX</td>
+<td class="px-6 py-4"><span class="bg-yellow-500/20 text-yellow-500 text-[10px] px-2 py-1 rounded">BETA</span></td>
+</tr>
 </tbody>
 </table>
 </div>
 </section>
+<!-- Contact Section: cat contact.txt -->
 <section class="flex flex-col gap-6 pb-20" id="contact">
 <div class="flex items-center gap-2">
 <span class="text-primary/50">visitor@jenr8ed:~$</span>
@@ -430,11 +218,13 @@
 </div>
 </div>
 </section>
+<!-- Footer Prompt -->
 <div class="flex items-center gap-2 pt-10 pb-20 border-t border-primary/10">
 <span class="text-primary/50">visitor@jenr8ed:~$</span>
-<span class="cursor animate-blink"></span>
+<span class="cursor"></span>
 </div>
 </main>
+<!-- Bottom Info Bar -->
 <footer class="fixed bottom-0 left-0 w-full bg-primary/10 backdrop-blur-sm border-t border-primary/20 px-4 py-1 flex justify-between text-[10px] text-primary/60 font-mono z-40">
 <div class="flex gap-4">
 <span>UTF-8</span>
@@ -442,11 +232,10 @@
 <span>LATENCY: 12ms</span>
 </div>
 <div class="flex gap-4">
-<span>JENR8ED_OS v1.1.0</span>
+<span>JENR8ED_OS v1.0.4</span>
 <span>STATUS: ONLINE</span>
 </div>
 </footer>
 </div>
 </div>
-
 </body></html>

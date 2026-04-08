@@ -19,7 +19,7 @@ def test_validate_not_a_list():
         assert str(excinfo.value) == "Root should be a JSON array"
 
 def test_validate_file_not_found():
-    """Test validate() when testing_report.json is missing."""
+    """Test validate() when file is missing."""
     with patch("builtins.open", side_effect=FileNotFoundError):
         with pytest.raises(FileNotFoundError):
             validate()
@@ -30,3 +30,11 @@ def test_validate_invalid_json():
     with patch("builtins.open", mock_open(read_data=mock_data)):
         with pytest.raises(json.JSONDecodeError):
             validate()
+
+def test_validate_custom_filepath():
+    """Test validate() with a custom filepath."""
+    mock_data = json.dumps([])
+    custom_path = "custom_report.json"
+    with patch("builtins.open", mock_open(read_data=mock_data)) as mocked_open:
+        validate(filepath=custom_path)
+        mocked_open.assert_called_once_with(custom_path, 'r')

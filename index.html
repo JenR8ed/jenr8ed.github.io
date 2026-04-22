@@ -47,6 +47,13 @@
             margin-left: 4px;
         }
     </style>
+    <style type="text/tailwindcss">
+        @layer components {
+            .input-field {
+                @apply bg-transparent border border-primary/30 rounded px-3 py-2 text-primary focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm placeholder:text-primary/20;
+            }
+        }
+    </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-mono text-slate-900 dark:text-primary min-h-screen relative overflow-x-hidden">
 <!-- CRT Scanline Effect Layer -->
@@ -207,11 +214,11 @@
 <form class="flex flex-col gap-4">
 <div class="flex flex-col gap-2">
 <label class="text-[10px] uppercase font-bold text-primary/50">Message Subject</label>
-<input class="bg-transparent border border-primary/30 rounded px-3 py-2 text-primary focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm placeholder:text-primary/20" placeholder="Project Inquiry" type="text"/>
+<input class="input-field" placeholder="Project Inquiry" type="text"/>
 </div>
 <div class="flex flex-col gap-2">
 <label class="text-[10px] uppercase font-bold text-primary/50">System Logs / Message</label>
-<textarea class="bg-transparent border border-primary/30 rounded px-3 py-2 text-primary focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm placeholder:text-primary/20" placeholder="Type your message here..." rows="3"></textarea>
+<textarea class="input-field" placeholder="Type your message here..." rows="3"></textarea>
 </div>
 <button class="bg-primary text-background-dark font-bold py-2 rounded text-sm hover:brightness-110" type="submit">SEND_PACKET</button>
 </form>

@@ -1,18 +1,21 @@
 import json
 
-def validate():
+def validate(file_path='testing_report.json'):
     """
     Validates the testing_report.json file.
 
     Ensures the root is a JSON array and each item contains the required fields:
     title, description, deepLink, filePath, and lineNumber.
 
+    Args:
+        file_path (str, optional): The path to the report file. Defaults to 'testing_report.json'.
+
     Raises:
         ValueError: If validation fails.
         FileNotFoundError: If the report file is missing.
         json.JSONDecodeError: If the report file is not valid JSON.
     """
-    with open('testing_report.json', 'r') as f:
+    with open(file_path, 'r') as f:
         data = json.load(f)
 
     if not isinstance(data, list):

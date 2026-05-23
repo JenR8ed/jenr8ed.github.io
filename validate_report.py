@@ -21,8 +21,10 @@ def validate():
     required_fields = [
         'title', 'description', 'deepLink', 'filePath', 'lineNumber'
     ]
+    required_fields_set = set(required_fields)
 
     for index, item in enumerate(data):
-        for field in required_fields:
-            if field not in item:
-                raise ValueError(f"Item at index {index} is missing required field: {field}")
+        if not required_fields_set.issubset(item.keys()):
+            for field in required_fields:
+                if field not in item:
+                    raise ValueError(f"Item at index {index} is missing required field: {field}")

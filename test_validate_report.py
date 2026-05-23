@@ -70,3 +70,17 @@ def test_validate_each_required_field(missing_field):
         with pytest.raises(ValueError) as excinfo:
             validate()
         assert f"is missing required field: {missing_field}" in str(excinfo.value)
+
+def test_validate_custom_file_path():
+    """Test validate() with a custom file path."""
+    mock_data = json.dumps([{
+        "title": "Test Title",
+        "description": "Test Description",
+        "deepLink": "http://example.com",
+        "filePath": "src/main.py",
+        "lineNumber": 10
+    }])
+    custom_path = "custom_report.json"
+    with patch("builtins.open", mock_open(read_data=mock_data)) as mocked_open:
+        validate(file_path=custom_path)
+        mocked_open.assert_called_once_with(custom_path, 'r')

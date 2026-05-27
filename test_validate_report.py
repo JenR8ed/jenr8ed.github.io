@@ -83,4 +83,4 @@ def test_validate_custom_file_path():
     custom_path = "custom_report.json"
     with patch("builtins.open", mock_open(read_data=mock_data)) as mocked_open:
         validate(file_path=custom_path)
-        mocked_open.assert_called_once_with(custom_path, 'r')
+        mocked_open.assert_called_once_with(custom_path, 'r', encoding='utf-8')

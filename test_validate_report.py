@@ -70,3 +70,10 @@ def test_validate_each_required_field(missing_field):
         with pytest.raises(ValueError) as excinfo:
             validate()
         assert f"is missing required field: {missing_field}" in str(excinfo.value)
+
+def test_validate_non_dict_item():
+    """Test validate() when an item in the JSON array is not a dictionary."""
+    mock_data = json.dumps([1, "string", None])
+    with patch("builtins.open", mock_open(read_data=mock_data)):
+        with pytest.raises(TypeError) as excinfo:
+            validate()

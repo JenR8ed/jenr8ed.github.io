@@ -8,7 +8,7 @@ def validate(file_path='testing_report.json'):
     title, description, deepLink, filePath, and lineNumber.
 
     Args:
-        file_path (str): The path to the JSON testing report file. Defaults to 'testing_report.json'.
+        file_path (str, optional): The path to the report file. Defaults to 'testing_report.json'.
 
     Raises:
         ValueError: If validation fails.

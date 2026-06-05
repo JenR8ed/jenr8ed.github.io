@@ -2,7 +2,7 @@ import json
 
 def validate(file_path='testing_report.json'):
     """
-    Validates the testing_report.json file.
+    Validates a JSON testing report file.
 
     Ensures the root is a JSON array and each item contains the required fields:
     title, description, deepLink, filePath, and lineNumber.

@@ -15,7 +15,7 @@ def validate(file_path='testing_report.json'):
         FileNotFoundError: If the report file is missing.
         json.JSONDecodeError: If the report file is not valid JSON.
     """
-    with open(file_path, 'r') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
     if not isinstance(data, list):

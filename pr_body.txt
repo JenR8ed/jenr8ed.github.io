@@ -1,0 +1,5 @@
+💡 **What:** Removed a duplicate `<link>` tag referencing the Google Fonts Material Symbols Outlined stylesheet in `index.html`.
+
+🎯 **Why:** Including the same external stylesheet twice causes the browser to process a redundant `<link>` element. While the browser's cache usually mitigates actual secondary network transfers if the headers are configured correctly, the parser still has to process the duplicate node, potentially delaying rendering. Removing it cleans up the source code and eliminates this inefficiency.
+
+📊 **Measured Improvement:** In this network-isolated sandbox environment, empirical performance measurements like exact page load time using browser automation tools cannot be reliably gathered due to the inability to actually fetch these external CDN assets. However, conceptually and architecturally, eliminating a duplicate external resource request provides a net performance gain by reducing DOM parsing overhead and preventing a potential redundant HTTP request. No functional regressions were introduced.

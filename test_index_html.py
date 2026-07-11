@@ -36,7 +36,7 @@ def test_index_html_structure():
     except FileNotFoundError:
         pytest.fail("index.html not found")
 
-    assert parser.title_text == "JenR8ed Terminal Portfolio"
+    assert parser.title_text.strip() == "JenR8ed Terminal Portfolio"
     assert "whoami" in parser.ids_found
     assert "stack" in parser.ids_found
     assert "projects" in parser.ids_found

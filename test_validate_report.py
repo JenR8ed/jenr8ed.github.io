@@ -13,9 +13,10 @@ def test_validate_success():
 def test_validate_empty_list():
     """Test validate() with an empty JSON array."""
     mock_data = json.dumps([])
-    with patch("builtins.open", mock_open(read_data=mock_data)):
+    with patch("builtins.open", mock_open(read_data=mock_data)) as mock_file:
         # Should not raise any exception
         validate()
+        mock_file.assert_called_once_with('testing_report.json', 'r')
 
 def test_validate_not_a_list():
     """Test validate() when root is not a JSON array."""

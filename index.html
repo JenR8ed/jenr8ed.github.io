@@ -200,7 +200,7 @@ Building production agentic systems, terminal-native interfaces, and automation 
 <div class="flex items-center gap-4"><span class="material-symbols-outlined">apartment</span><a href="https://github.com/jenr8ed-ai" target="_blank" rel="noopener" class="hover:text-primary">github.com/jenr8ed-ai</a></div>
 <div class="flex items-center gap-4"><span class="material-symbols-outlined">language</span><a href="https://jenr8edai.com" target="_blank" rel="noopener" class="hover:text-primary">jenr8edai.com</a> · <a href="https://jenr8ed.live" target="_blank" rel="noopener" class="hover:text-primary">jenr8ed.live</a></div>
 <div class="flex items-center gap-4"><span class="material-symbols-outlined">share</span><a href="https://linkedin.com/in/jenr8ed-ai" target="_blank" rel="noopener" class="hover:text-primary">linkedin.com/in/jenr8ed-ai</a></div>
-<button onclick="copyToClipboard('jennifer.mckinley@jenr8ed.io')" class="text-xs px-3 py-1 border border-primary/30 rounded hover:bg-primary/10 w-fit">COPY EMAIL</button>
+<button onclick="copyToClipboard('jennifer.mckinley@jenr8ed.io', this)" class="text-xs px-3 py-1 border border-primary/30 rounded hover:bg-primary/10 w-fit">COPY EMAIL</button>
 </div>
 <div class="border border-primary/20 p-6 rounded bg-primary/2">
 <form id="contact-form" onsubmit="handleFormSubmit(event)" class="flex flex-col gap-4">
@@ -227,11 +227,12 @@ Building production agentic systems, terminal-native interfaces, and automation 
 </div>
 </div>
 <script>
-function copyToClipboard(text) {
+function copyToClipboard(text, btn) {
   navigator.clipboard.writeText(text).then(() => {
-    document.querySelectorAll('button').forEach(b => {
-      if (b.textContent.includes('COPY')) { b.textContent = 'COPIED!'; setTimeout(() => b.textContent = 'COPY EMAIL', 1500); }
-    });
+    if (btn) {
+      btn.textContent = 'COPIED!';
+      setTimeout(() => btn.textContent = 'COPY EMAIL', 1500);
+    }
   }).catch(() => prompt('Copy email:', text));
 }
 function handleFormSubmit(e) {

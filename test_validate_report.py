@@ -22,7 +22,7 @@ def test_validate_empty_list():
     with patch("builtins.open", mock_open(read_data=mock_data)) as mock_file:
         # Should not raise any exception
         validate()
-        mock_file.assert_called_once_with('testing_report.json', 'r')
+        mock_file.assert_called_once_with('testing_report.json', 'r', encoding='utf-8')
 
 def test_validate_not_a_list():
     """Test validate() when root is not a JSON array."""

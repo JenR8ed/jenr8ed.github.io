@@ -21,11 +21,12 @@ def validate(file_path='testing_report.json'):
     if not isinstance(data, list):
         raise ValueError("Root should be a JSON array")
 
-    required_fields = [
-        'title', 'description', 'deepLink', 'filePath', 'lineNumber'
-    ]
+    required_fields = {'title', 'description', 'deepLink', 'filePath', 'lineNumber'}
+    required_fields_list = ['title', 'description', 'deepLink', 'filePath', 'lineNumber']
 
     for index, item in enumerate(data):
-        for field in required_fields:
-            if field not in item:
-                raise ValueError(f"Item at index {index} is missing required field: {field}")
+        if missing := required_fields.difference(item):
+            # Maintain exact error message order for tests
+            for field in required_fields_list:
+                if field in missing:
+                    raise ValueError(f"Item at index {index} is missing required field: {field}")

@@ -4,7 +4,7 @@
 Personal portfolio and project showcase for Jennifer McKinley (@JenR8ed).
 QA Engineer & Python Developer. Hosted on GitHub Pages.
 
-**Live site:** https://jenr8ed.github.io
+This repository is a secondary link page. Public portfolio calls to action point only to https://jenr8edai.com/. Do not advertise this host or private repository source as the primary portfolio.
 
 ## Stack
 - Python (scripts and automation)
